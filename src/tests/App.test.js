@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { screen } from '@testing-library/react';
-import App from '../App.js';
-import renderWithRouter from '../renderWithRouter'
 import userEvent from '@testing-library/user-event';
+import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
-describe ('App component - Req 01', () => {
+describe('App component - Req 01', () => {
   it('should be links in the nav', () => {
     renderWithRouter(<App />);
     const home = screen.getByText('Home');
@@ -17,25 +17,24 @@ describe ('App component - Req 01', () => {
 
   it('should be redirect to "/" when clicked "Home"', () => {
     const { history } = renderWithRouter(<App />);
-    const home = screen.getByRole('link',{name: /Home/i});
+    const home = screen.getByRole('link', { name: /Home/i });
     userEvent.click(home);
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
-  
+
   it('should be redirect to "/about" when clicked "About"', () => {
     const { history } = renderWithRouter(<App />);
-    const about = screen.getByRole('link',{name: /About/i});
+    const about = screen.getByRole('link', { name: /About/i });
     userEvent.click(about);
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
   it('should be redirect to "/favorites" when clicked "Pokémons Favoritados"', () => {
     const { history } = renderWithRouter(<App />);
-    const favoritePokemons = screen.getByRole('link',{name: /Favorite Pokémons/i});
+    const favoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
     userEvent.click(favoritePokemons);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
-})
-
+});
